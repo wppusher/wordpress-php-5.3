@@ -19,12 +19,6 @@ rm public/wp-content/plugins/hello.php
 # With:
 # require( dirname( __FILE__ ) . '/wp/wp-blog-header.php' );
 
-# Now we need to set a few additional constants for the configuration.
-# define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
-# define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
-# define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp');
-# define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME']);
-
 # Database
 mysql -u root -proot -e "drop database if exists wordpress";
 mysql -u root -proot -e "create database wordpress";
@@ -33,3 +27,13 @@ mysql -u root -proot -e "create database wordpress";
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
 sudo mv wp-cli.phar /usr/local/bin/wp
+
+# WP config
+wp core config --allow-root --path="public/wp" --dbname=wordpress --dbuser=root --dbpass=root --locale=en_US --extra-php <<PHP
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
+define('WP_CONTENT_URL', 'http://192.168.22.53.xip.io/wp-content');
+define('WP_SITEURL', 'http://192.168.22.53.xip.io/wp');
+define('WP_HOME', 'http://192.168.22.53.xip.io/');
+PHP
