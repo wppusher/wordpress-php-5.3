@@ -11,8 +11,6 @@ cd www
 composer install
 cp -R public/wp/{wp-content,index.php,wp-config-sample.php} public/
 rm public/wp-content/plugins/hello.php
-# Could it be deleted:
-# mv public/wp-config-sample.php public/wp-config.php
 
 # In public/index.php, modify the following line:
 # require( dirname( __FILE__ ) . '/wp-blog-header.php' );
@@ -37,3 +35,5 @@ define('WP_CONTENT_URL', 'http://192.168.22.53.xip.io/wp-content');
 define('WP_SITEURL', 'http://192.168.22.53.xip.io/wp');
 define('WP_HOME', 'http://192.168.22.53.xip.io/');
 PHP
+
+mv public/wp/wp-config.php public/wp-config.php
